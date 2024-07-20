@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const trainRoutes = require('./routes/trains');
+const trainRoutes = require('./routes/trainsRoute');
 
 app.use(express.json());
 
@@ -21,7 +21,7 @@ mongoose.connect(dbURI)
     });
 
 // Use routes
-app.use('/trains', trainRoutes);
+app.use('/api/trains', trainRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
