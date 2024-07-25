@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors'); // Import cors
 const app = express();
 const trainRoutes = require('./routes/trainsRoute');
+const locationRoutes = require('./routes/locationsRoute');
 
 // Middleware
 app.use(cors()); // Use cors before defining routes
@@ -24,7 +25,8 @@ mongoose.connect(dbURI)
     });
 
 // Use routes
-app.use('/api/trains', trainRoutes);
+app.use('/api/trains', trainRoutes);    
+app.use('/api/locations', locationRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
