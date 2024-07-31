@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
     TrainId: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Train', // Add reference to the Train model
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Train',
         required: true
     },
     DateTime: {
@@ -15,7 +15,7 @@ const locationSchema = new mongoose.Schema({
         required: true
     }
 }, {
-    timestamps: true 
+    timestamps: true
 });
 
 module.exports = mongoose.model('Location', locationSchema);
