@@ -122,6 +122,12 @@ const searchTrains = async (req, res) => {
             );
         }
 
+        if (startStation && endStation) {
+            filteredLocations = filteredLocations.filter(loc =>
+                loc.TrainId.startStation.toLowerCase().includes(startStation.toLowerCase()) && loc.TrainId.endStation.toLowerCase().includes(endStation.toLowerCase())
+            );
+        }
+
         res.json(filteredLocations);
     } catch (err) {
         res.status(500).json({ message: err.message });
