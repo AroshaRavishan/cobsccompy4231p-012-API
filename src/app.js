@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import cors
+const cors = require('cors');
 const app = express();
 const trainRoutes = require('./routes/trainsRoute');
 const locationRoutes = require('./routes/locationsRoute');
+const scheduleLocationGeneration = require('./generateLocationCRON'); //imports
+
 
 // Middleware
 app.use(cors()); // Use cors before defining routes
@@ -18,6 +20,7 @@ mongoose.connect(dbURI)
     .then(() => {
         console.log('Connected to Database');
         startServer();
+        scheduleLocationGeneration(); // Start generating location records
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error.message);
@@ -28,7 +31,7 @@ mongoose.connect(dbURI)
 app.use('/api/trains', trainRoutes);    
 app.use('/api/locations', locationRoutes);
 
-// Error handling middleware
+// Error handling
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
