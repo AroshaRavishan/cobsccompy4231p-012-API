@@ -67,7 +67,7 @@ async function generateLocationRecords() {
                 LastArrivedStation: currentStation,
             });
 
-            await location.save();
+            await location.save();  
             console.log(`${train.trainName} has arrived at ${currentStation}.`);
 
             train.lastStation = currentStation;
