@@ -10,6 +10,15 @@ const getAllLocations = async (req, res) => {
     }
 };
 
+// Delete all locations (ONLY FOR TESTING PURPOSE)
+const deleteAllLocations = async (req, res) => {
+    try {
+        await Location.deleteMany({});
+        res.status(200).json({ message: 'All locations deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
 
 const searchTrains = async (req, res) => {
     try {
@@ -64,6 +73,6 @@ const searchTrains = async (req, res) => {
 };
 
 
-module.exports = { getAllLocations, searchTrains };
+module.exports = { getAllLocations, searchTrains , deleteAllLocations };
 
 

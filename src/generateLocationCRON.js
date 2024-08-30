@@ -87,7 +87,7 @@ async function generateLocationRecords() {
 }
 
 function scheduleLocationGeneration() {
-    cron.schedule('*/10 * * * * *', async () => {
+    cron.schedule('* * * * *', async () => {
         await generateLocationRecords();
     });
 }
