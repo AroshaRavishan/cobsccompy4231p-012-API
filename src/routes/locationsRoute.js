@@ -2,14 +2,53 @@ const express = require('express');
 const router = express.Router();
 const { getAllLocations, searchTrains, deleteAllLocations } = require('../controllers/locationController');
 
-
-// Route to get all locations
+/**
+ * @swagger
+ * /api/locations:
+ *   get:
+ *     summary: Get all locations
+ *     responses:
+ *       200:
+ *         description: A list of locations.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
 router.get('/', getAllLocations);
 
-// New search route
+/**
+ * @swagger
+ * /api/locations/search:
+ *   get:
+ *     summary: Search for trains by location
+ *     responses:
+ *       200:
+ *         description: A list of trains matching the search criteria.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
 router.get('/search', searchTrains);
 
-// Delete all locations (ONLY FOR TESTING PURPOSE)
+/**
+ * @swagger
+ * /api/locations/delete:
+ *   get:
+ *     summary: Delete all locations (only for testing)
+ *     responses:
+ *       200:
+ *         description: All locations have been deleted.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
 router.get('/delete', deleteAllLocations);
 
 module.exports = router;

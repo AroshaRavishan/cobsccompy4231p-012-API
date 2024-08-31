@@ -7,6 +7,29 @@ const trainRoutes = require('./routes/trainsRoute');
 const locationRoutes = require('./routes/locationsRoute');
 const scheduleLocationGeneration = require('./generateLocationCRON'); //imports
 
+// Swagger setup
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Train Tracking API',
+            version: '1.0.0',
+            description: 'API documentation for Train Tracking System',
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000',
+            },
+        ],
+    },
+    apis: ['./src/routes/*.js'], // Path to the API routes
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Middleware
 app.use(cors()); // Use cors before defining routes
