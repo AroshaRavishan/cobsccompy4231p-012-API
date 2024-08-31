@@ -21,7 +21,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:3000',
+                url: 'https://cobsccompy4231p-012-api-8e2e4fbeaabd.herokuapp.com/swagger',
             },
         ],
     },
